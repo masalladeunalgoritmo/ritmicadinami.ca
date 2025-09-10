@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title></title>
+  <title>RTMICA Dinami.ca</title>
   <style>
     /* ===== Reset mínimo ===== */
     *,*::before,*::after{box-sizing:border-box}
@@ -69,10 +69,45 @@
     .scrolly .marquee .row{display:flex;gap:2rem;white-space:nowrap;will-change:transform;animation:marquee 20s linear infinite}
     .scrolly .marquee span{font-weight:900;letter-spacing:.06em;text-transform:uppercase;font-size:clamp(3rem,10vw,10rem)}
     @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  
+
+    /* ===== Centrar TODAS las secciones (hero-like) ===== */
+    .section{display:flex;align-items:center;justify-content:center;min-height:100svh;text-align:center;padding:2rem}
+    .section .card{max-width:800px;margin:0 auto}
+
+    /* ===== Responsivo ===== */
+    /* Tablets y abajo */
+    @media (max-width: 1024px){
+      .headline{font-size:clamp(1.8rem,5.2vw,3rem)}
+      .lead{max-width:65ch}
+      .row{gap:.75rem}
+      .btn{padding:.8rem 1rem}
+      .section{padding:2.5rem 1.25rem}
+    }
+    /* Móviles */
+    @media (max-width: 640px){
+      .wrap{padding:4.5rem 1rem}
+      .headline{font-size:clamp(1.6rem,8vw,2.4rem);line-height:1.15}
+      .lead{font-size:0.95rem;opacity:.9}
+      .row{flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+      .section{min-height:auto;padding:3.5rem 1rem}
+      .section .card{max-width:560px}
+      /* Marquee más discreto en móvil */
+      .scrolly .marquee{top:10vh;opacity:.06}
+      .scrolly .marquee span{font-size:clamp(2rem,14vw,4rem)}
+      /* Frame más vertical en móvil */
+      .scrolly .frame{width:min(92vw,640px);aspect-ratio:4/5;border-radius:16px}
+    }
+    /* Muy pequeño */
+    @media (max-width: 380px){
+      .headline{font-size:1.4rem}
+      .lead{font-size:.9rem}
+    }
   </style>
 </head>
 <body>
-
+  
   <!-- ===== Cursor ===== -->
   <div class="mf-cursor -hidden" id="mfCursor" aria-hidden="true">
     <div class="mf-cursor__ball"></div>
@@ -257,8 +292,23 @@
     window.addEventListener('resize', onScroll);
   })();
   </script>
-
   
+ <script>
+   
+  // Fallback móvil para scrolly: reduce animación pesada en pantallas táctiles o estrechas
+  (function(){
+    const section = document.getElementById('scrolly');
+    const frame = document.getElementById('scrollyFrame');
+    if(!section || !frame) return;
+    const isCoarse = matchMedia('(pointer: coarse)').matches;
+    const isNarrow = matchMedia('(max-width: 640px)').matches;
+    if(isCoarse || isNarrow){
+      frame.style.transition = 'none';
+      frame.style.transform = 'scale(1.05)';
+    }
+  })();
+  </script>
+
  <!-- ===== Sección estilo cápsula con enlace ===== -->
  <section class="section" id="rtmca">
   <div class="card">
@@ -284,3 +334,4 @@
 
 </body>
 </html>
+
