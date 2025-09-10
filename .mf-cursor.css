@@ -12,6 +12,13 @@
   margin: 0 auto;
 }
 
+/* Ajuste especial: la scrolly no debe heredar el aire extra */
+.section.scrolly {
+  padding: 0;
+  min-height: auto;
+  border-top: 0; /* opcional, quita la línea divisoria */
+}
+
 /* Tablets y abajo */
 @media (max-width: 1024px){
   .headline{font-size:clamp(1.8rem,5.2vw,3rem)}
