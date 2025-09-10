@@ -1,0 +1,26 @@
+.mf-cursor {
+  direction: ltr;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transition: opacity .3s, color .4s;
+  z-index: 250;
+}
+
+/* Centrar TODAS las secciones */
+.section {
+  display: flex;
+  align-items: center;      /* centra verticalmente */
+  justify-content: center;  /* centra horizontalmente */
+  min-height: 100vh;        /* que cada sección ocupe el alto de la pantalla */
+  text-align: center;       /* centra el texto */
+  padding: 2rem;            /* un poco de espacio interno */
+}
+
+.section .card {
+  max-width: 800px;         /* limita el ancho para que no se expanda demasiado */
+  margin: 0 auto;
+}
+
+
